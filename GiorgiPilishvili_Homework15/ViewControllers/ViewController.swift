@@ -51,13 +51,11 @@ class ViewController: UIViewController {
         let alert = UIAlertController()
         
         alert.addAction(UIAlertAction(title: "Sort by seen", style: .default, handler: { alertAction in
-            print("Sort by seen")
             self.sortMethod = "seen"
             self.tableViewMovies.reloadData()
         }))
         
         alert.addAction(UIAlertAction(title: "Sort by favourite", style: .default, handler: { alertAction in
-            print("Sort by favourite")
             self.sortMethod = "favourite"
             self.tableViewMovies.reloadData()
         }))
@@ -70,7 +68,7 @@ class ViewController: UIViewController {
     
 }
 
-// MARK: Extension for button click event
+// MARK: Extension for seen button click event
 
 extension ViewController: MovieCellDelegate {
     
@@ -97,7 +95,6 @@ extension ViewController: MovieCellDelegate {
                 }
             }
             
-//            movies[currentMovieIndex ?? 0].seen = indexPath.section != 0
             movies[currentMovieIndex ?? 0].seen = !movies[currentMovieIndex ?? 0].seen
             tableViewMovies.reloadData()
         }
@@ -110,7 +107,6 @@ extension ViewController: MovieCellDelegate {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        section == 0 ? movies.filter { $0.seen }.count : movies.filter { !$0.seen }.count
         
         if sortMethod == "favourite" {
             return section == 0 ? movies.filter { $0.isFavourite }.count : movies.filter { !$0.isFavourite }.count
@@ -127,12 +123,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         var currentMovie: Movie?
         
-//        if indexPath.section == 0 {
-//            currentMovie = movies.filter { $0.seen }[indexPath.row]
-//        } else {
-//            currentMovie = movies.filter { !$0.seen }[indexPath.row]
-//        }
-        
         if sortMethod == "favourite" {
             if indexPath.section == 0 {
                 currentMovie = movies.filter { $0.isFavourite }[indexPath.row]
@@ -147,7 +137,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        //
+        // Set button icon
         
         guard let isSeen = currentMovie?.seen else { return UITableViewCell() }
         
@@ -176,11 +166,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
+                
         if sortMethod == "favourite" {
-            return section == 0 ? "Favourite" : "Other"
+            
+            // Show title if section is not empty
+            
+            if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
+                return section == 0 ? "Favourite" : "Other"
+            } else {
+                return nil
+            }
+            
         } else {
-            return section == 0 ? "Seen" : "Other"
+            
+            if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
+                return section == 0 ? "Seen" : "Other"
+            } else {
+                return nil
+            }
+            
         }
         
     }
@@ -188,12 +192,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController")
         guard let vc = vc else { return }
-        
-//        if indexPath.section == 0 {
-//            (vc as? DetailsViewController)?.movie = movies.filter { $0.seen }[indexPath.row]
-//        } else {
-//            (vc as? DetailsViewController)?.movie = movies.filter { !$0.seen }[indexPath.row]
-//        }
         
         if sortMethod == "favourite" {
             if indexPath.section == 0 {
