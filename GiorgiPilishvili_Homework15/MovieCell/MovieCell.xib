@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="76" id="mT5-ld-inV" customClass="MovieCell" customModule="GiorgiPilishvili_Homework15" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="76"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mT5-ld-inV" id="sjr-w5-JYo">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="76"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-GZ-6S8">
+                        <rect key="frame" x="20" y="12.5" width="93.5" height="51"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZH-Ck-xPG">
+                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMDB: 8.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBg-HW-xdQ">
+                                <rect key="frame" x="0.0" y="31.5" width="93.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYs-dV-e0q">
+                        <rect key="frame" x="327" y="23" width="14" height="31"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                        <connections>
+                            <action selector="addSeenButton:" destination="mT5-ld-inV" eventType="touchUpInside" id="IkB-1f-8NK"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OYs-dV-e0q" firstAttribute="centerY" secondItem="sjr-w5-JYo" secondAttribute="centerY" id="83G-nR-cKg"/>
+                    <constraint firstItem="cYO-GZ-6S8" firstAttribute="centerY" secondItem="sjr-w5-JYo" secondAttribute="centerY" id="Pd7-p6-VLd"/>
+                    <constraint firstItem="cYO-GZ-6S8" firstAttribute="leading" secondItem="sjr-w5-JYo" secondAttribute="leading" constant="20" id="VMg-Rp-Qpj"/>
+                    <constraint firstAttribute="trailing" secondItem="OYs-dV-e0q" secondAttribute="trailing" constant="20" id="Z0X-Hh-ZFG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonSeen" destination="OYs-dV-e0q" id="F90-ga-qVP"/>
+                <outlet property="labelImdb" destination="iBg-HW-xdQ" id="Ji6-0V-xIY"/>
+                <outlet property="labelTitle" destination="6ZH-Ck-xPG" id="pdY-QB-epd"/>
+            </connections>
+            <point key="canvasLocation" x="-209.42028985507247" y="83.705357142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
