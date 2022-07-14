@@ -7,11 +7,27 @@
 
 import Foundation
 
-struct Movie {
+enum Genre: String {
+    case all = "All"
+    case comedy = "Comedy"
+    case action = "Action"
+    case drama = "Drama"
+}
+
+struct Movie: Hashable {
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.title == rhs.title
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
     
     let title: String
     let releaseDate: String
     let imdb: Double
+    let genre: Genre
     let mainActor: String
     var seen: Bool
     var isFavourite: Bool

@@ -17,8 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FaE-iv-2Zh">
+                                <rect key="frame" x="20" y="140" width="394" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="sIr-Eq-Vdi"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sbo-dl-lnz">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e0Q-87-KA5">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="240" width="414" height="622"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -26,14 +40,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="e0Q-87-KA5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Q8-X6-GH1"/>
+                            <constraint firstItem="e0Q-87-KA5" firstAttribute="top" secondItem="FaE-iv-2Zh" secondAttribute="bottom" id="DLo-TV-65H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e0Q-87-KA5" secondAttribute="trailing" id="KtH-G1-CMe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e0Q-87-KA5" secondAttribute="bottom" id="Umn-77-xcj"/>
-                            <constraint firstItem="e0Q-87-KA5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gv4-gx-MmE"/>
+                            <constraint firstItem="FaE-iv-2Zh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="daR-pj-rTW"/>
+                            <constraint firstItem="FaE-iv-2Zh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qGl-Bn-Lei"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FaE-iv-2Zh" secondAttribute="trailing" id="u46-lL-ELa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movie List" id="Ocx-sz-Ajl">
                         <barButtonItem key="backBarButtonItem" title="Back" id="l5g-Va-arx"/>
-                        <barButtonItem key="rightBarButtonItem" title="Sort" image="rectangle.3.group" catalog="system" style="plain" id="ci3-3O-CS8">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" image="rectangle.3.group" catalog="system" id="ci3-3O-CS8">
                             <color key="tintColor" systemColor="systemGreenColor"/>
                             <connections>
                                 <action selector="changeSectionSorting:" destination="BYZ-38-t0r" id="yy4-YN-GCz"/>
@@ -41,12 +58,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionViewGenres" destination="FaE-iv-2Zh" id="tao-Go-w0T"/>
                         <outlet property="tableViewMovies" destination="e0Q-87-KA5" id="Xlq-DI-f61"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="498.55072463768118" y="97.767857142857139"/>
+            <point key="canvasLocation" x="441" y="98"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="n0o-ep-hgh">
@@ -57,7 +75,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KyN-nc-Pk3">
-                                <rect key="frame" x="20.5" y="54" width="373" height="445.5"/>
+                                <rect key="frame" x="20.5" y="54" width="373" height="486"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="R2c-GF-Vvo">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="20.5"/>
@@ -110,8 +128,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cqN-Ic-N8r">
+                                        <rect key="frame" x="0.0" y="121.5" width="373" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxc-Bz-uZ0">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPN-2V-dfP">
+                                                <rect key="frame" x="305" y="0.0" width="68" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGreenColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ach-UU-qhk">
-                                        <rect key="frame" x="0.0" y="121.5" width="373" height="40"/>
+                                        <rect key="frame" x="0.0" y="162" width="373" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="2U2-Pa-8II"/>
                                         </constraints>
@@ -126,27 +161,58 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bQ-7X-sao">
-                                        <rect key="frame" x="0.0" y="181.5" width="373" height="264"/>
-                                        <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</mutableString>
+                                        <rect key="frame" x="0.0" y="222" width="373" height="264"/>
+                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oRn-GR-hfy">
+                                <rect key="frame" x="20.5" y="560" width="373" height="131.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Same genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlW-0C-cld">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hPa-vX-Mx4">
+                                        <rect key="frame" x="0.0" y="31.5" width="373" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="8nT-z4-Bfc"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rws-qa-WVG">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wuu-MF-tbM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="oRn-GR-hfy" firstAttribute="width" secondItem="75n-vc-NFG" secondAttribute="width" multiplier="0.9" id="1ay-4a-XXC"/>
                             <constraint firstItem="KyN-nc-Pk3" firstAttribute="top" secondItem="wuu-MF-tbM" secondAttribute="top" constant="10" id="1zU-aS-wci"/>
                             <constraint firstItem="KyN-nc-Pk3" firstAttribute="centerX" secondItem="75n-vc-NFG" secondAttribute="centerX" id="Fzk-VE-QQA"/>
+                            <constraint firstItem="oRn-GR-hfy" firstAttribute="centerX" secondItem="75n-vc-NFG" secondAttribute="centerX" id="lcX-Qu-JXz"/>
+                            <constraint firstItem="oRn-GR-hfy" firstAttribute="top" secondItem="KyN-nc-Pk3" secondAttribute="bottom" constant="20" id="mcP-wd-Nro"/>
                             <constraint firstItem="KyN-nc-Pk3" firstAttribute="width" secondItem="75n-vc-NFG" secondAttribute="width" multiplier="0.9" id="yQD-cx-v1x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wLv-m3-y8u"/>
                     <connections>
                         <outlet property="buttonFavourite" destination="ach-UU-qhk" id="c7H-XC-7Tv"/>
+                        <outlet property="collectionViewMovies" destination="hPa-vX-Mx4" id="x9T-eM-Xd3"/>
+                        <outlet property="labelCollectionViewTitle" destination="QlW-0C-cld" id="BVQ-ri-FTR"/>
                         <outlet property="labelDescription" destination="8bQ-7X-sao" id="iLx-V4-vYu"/>
+                        <outlet property="labelGenre" destination="nPN-2V-dfP" id="b6d-Wf-YTI"/>
                         <outlet property="labelImdb" destination="0dL-IW-viY" id="3Fi-pr-ljf"/>
                         <outlet property="labelMainActor" destination="nJ6-XI-bS9" id="nfQ-bB-Z72"/>
                         <outlet property="labelReleaseDate" destination="Y79-9K-Cjj" id="HI2-x2-COI"/>
