@@ -17,7 +17,9 @@ extension ViewController: MovieCellDelegate {
         if let indexPath = tableViewMovies.indexPath(for: cell) {
             
             var currentMovieIndex: Int?
-            if currentGenre == .all {
+            
+            // if currentGenre == .all
+            if currentGenres == [.all] {
                 if sortMethod == .favourite {
                     if indexPath.section == 0 {
                         let movie = movies.filter { $0.isFavourite }[indexPath.row]
@@ -36,7 +38,9 @@ extension ViewController: MovieCellDelegate {
                     }
                 }
             } else {
-                let movie = movies.filter { $0.genre == currentGenre }[indexPath.row]
+                
+                                          // $0.genre == currentGenre
+                let movie = movies.filter { $0.genre == currentGenres[indexPath.section] }[indexPath.row]
                 currentMovieIndex = movies.firstIndex(where: { $0.title == movie.title })
             }
             

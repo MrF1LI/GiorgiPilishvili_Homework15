@@ -39,7 +39,8 @@ class ViewController: UIViewController {
     var difDataSource: UICollectionViewDiffableDataSource<Section, Genre>!
     
     var sortMethod: SortMethod = .seen
-    var currentGenre: Genre = .all
+//    var currentGenre: Genre = .all
+    var currentGenres: [Genre] = [.all]
         
     // MARK: Lifecycle methods
     
@@ -64,13 +65,15 @@ class ViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Sort by seen", style: .default, handler: { alertAction in
             self.sortMethod = .seen
-            self.currentGenre = .all
+//            self.currentGenre = .all
+            self.currentGenres = [.all]
             self.tableViewMovies.reloadData()
         }))
         
         alert.addAction(UIAlertAction(title: "Sort by favourite", style: .default, handler: { alertAction in
             self.sortMethod = .favourite
-            self.currentGenre = .all
+//            self.currentGenre = .all
+            self.currentGenres = [.all]
             self.tableViewMovies.reloadData()
         }))
         

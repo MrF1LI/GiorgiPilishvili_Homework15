@@ -30,6 +30,7 @@ class GenreCell: UICollectionViewCell {
     }
     
     func setInformation(genre: Genre) {
+        imageViewBackground.removeBlur()
         labelGenre.setOutLinedText(genre.rawValue)
         imageViewBackground.image = images[genre]
     }

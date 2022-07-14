@@ -42,3 +42,67 @@ extension UILabel {
         attributedText = customizedText
      }
 }
+
+// MARK: Extension for blur image
+
+extension UIView {
+    func addBlur() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
+
+    func removeBlur() {
+        for subview in self.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+}
+
+//protocol Blurable: UIView {
+//    var blurEffectView: UIVisualEffectView? { set get }
+//
+//    func applyBlur(with effect: UIBlurEffect.Style)
+//    func removeBlur()
+//}
+//
+//private var xoAssociationKey: UInt8 = 0
+//
+//extension Blurable where Self: UIImageView {
+//
+//    // If you want to avoid adding "blurEffectView" to each UIView class,
+//    // you can do it this way
+//    var blurEffectView: UIVisualEffectView? {
+//        get {
+//            return objc_getAssociatedObject(self, &xoAssociationKey) as? UIVisualEffectView
+//        }
+//
+//        set(newBlurEffectView) {
+//            objc_setAssociatedObject(self, &xoAssociationKey, newBlurEffectView, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+//        }
+//    }
+//
+//    func applyBlur(with effect: UIBlurEffect.Style) {
+//        let blurEffect = UIBlurEffect(style: effect)
+//        blurEffectView = UIVisualEffectView(effect: blurEffect)
+//
+//        blurEffectView?.frame = bounds
+//        blurEffectView?.alpha = 0.8
+//
+//        if let blurEffectView = blurEffectView { addSubview(blurEffectView) }
+//    }
+//
+//    func removeBlur() {
+//        if let blurEffectView = blurEffectView {
+//            blurEffectView.removeFromSuperview()
+//        }
+//
+//        blurEffectView = nil
+//    }
+//}
+//
+//extension UIImageView: Blurable {}

@@ -12,14 +12,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if currentGenre == .all {
+        // if currentGenre == .all
+        
+        if currentGenres == [.all] {
             if sortMethod == .favourite {
                 return section == 0 ? movies.filter { $0.isFavourite }.count : movies.filter { !$0.isFavourite }.count
             } else {
                 return section == 0 ? movies.filter { $0.seen }.count : movies.filter { !$0.seen }.count
             }
-        } else {
-            return movies.filter { $0.genre == currentGenre }.count
+        } else {                 // $0.genre == currentGenre
+            return movies.filter { $0.genre == currentGenres[section] }.count
         }
     }
     
@@ -30,7 +32,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         var currentMovie: Movie?
         
-        if currentGenre == .all {
+        // if currentGenre == .all
+        if currentGenres == [.all] {
             if sortMethod == .favourite {
                 if indexPath.section == 0 {
                     currentMovie = movies.filter { $0.isFavourite }[indexPath.row]
@@ -45,7 +48,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         } else {
-            currentMovie = movies.filter { $0.genre == currentGenre }[indexPath.row]
+                                           // $0.genre == currentGenre
+            currentMovie = movies.filter { $0.genre == currentGenres[indexPath.section] }[indexPath.row]
         }
         
         // Set button icon
@@ -73,12 +77,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        currentGenre == .all ? 2 : 1
+        
+        // currentGenre == .all ? 2 : 1
+        currentGenres == [.all] ? 2 : currentGenres.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        if currentGenre == .all {
+        // if currentGenre == .all
+        if currentGenres == [.all] {
             if sortMethod == .favourite {
                 
                 // Show title if section is not empty
@@ -101,7 +108,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             
             if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
-                return currentGenre.rawValue
+//                return currentGenre.rawValue
+                return currentGenres[section].rawValue
             } else {
                 return nil
             }
@@ -116,7 +124,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         var currentMovie: Movie
         
-        if currentGenre == .all {
+        // if currentGenre == .all
+        if currentGenres == [.all] {
             
             if sortMethod == .favourite {
                 if indexPath.section == 0 {
@@ -132,8 +141,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-        } else {
-            currentMovie = movies.filter { $0.genre == currentGenre }[indexPath.row]
+        } else {                         // $0.genre == currentGenre
+            currentMovie = movies.filter { $0.genre == currentGenres[indexPath.section] }[indexPath.row]
         }
         
         vc.movie = currentMovie
